@@ -2,7 +2,7 @@ package niall
 
 // #include <stdio.h>
 // #include <stdarg.h>
-// #include "niall.h"
+// #include <niall.h>
 import "C"
 
 import (
