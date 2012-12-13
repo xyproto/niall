@@ -32,9 +32,9 @@ import (
 )
 
 var (
-	WarningFunction = fmt.Print
-	ErrorFunction = fmt.Print
-	PrintFunction = fmt.Print
+	WarningFunction = fmt.Println
+	ErrorFunction = fmt.Println
+	PrintFunction = fmt.Println
 )
 
 //export niall_go_warning
