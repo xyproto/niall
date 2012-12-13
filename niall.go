@@ -4,13 +4,15 @@ package niall
 #include <stdio.h>
 #include <stdarg.h>
 
-// The main Niall functions
+// Startup/shutdown
 void Niall_Init(void);
 void Niall_Free(void);
+
+// Niall's main functions
 void Niall_Learn(char *Buffer);
 void Niall_Reply(char *Buffer,int BufSize);
 
-// "Household" functions
+// Housekeeping functions
 void Niall_NewDictionary(void);
 void Niall_ListDictionary(void);
 void Niall_SaveDictionary(char *file);
