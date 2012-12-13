@@ -1,8 +1,27 @@
 package niall
 
-// #include <stdio.h>
-// #include <stdarg.h>
-// #include "niall.h"
+/*
+#include <stdio.h>
+#include <stdarg.h>
+
+// The main Niall functions
+void Niall_Init(void);
+void Niall_Free(void);
+void Niall_Learn(char *Buffer);
+void Niall_Reply(char *Buffer,int BufSize);
+
+// "Household" functions
+void Niall_NewDictionary(void);
+void Niall_ListDictionary(void);
+void Niall_SaveDictionary(char *file);
+void Niall_LoadDictionary(char *file);
+void Niall_CorrectSpelling(char *Original,char *Correct);
+
+// Niall calls these functions (from C to Go)
+extern void niall_go_print( char *msg );
+extern void niall_go_warning( char *msg );
+extern void niall_go_error( char *msg );
+*/
 import "C"
 
 import (
@@ -72,19 +91,18 @@ func ListDictionary() {
 	C.Niall_ListDictionary()
 }
 
+// Load the dictionary from file
 func LoadDictionary(filename string) {
-//void Niall_LoadDictionary(char *file);
-//	C.Niall_LoadDictionary()
+	C.Niall_LoadDictionary(C.CString(filename))
 }
 
+// Save the dictionary to file
 func SaveDictionary(filename string) {
-//void Niall_SaveDictionary(char *file);
-//	C.Niall_SaveDictionary()
+	C.Niall_SaveDictionary(C.CString(filename))
 }
 
+// Correct the spelling
 func CorrectSpelling(original, correct string) {
-//void Niall_CorrectSpelling(char *Original,char *Correct);
-//	C.Niall_CorrectSpelling()
+	C.Niall_CorrectSpelling(C.CString(original), C.CString(correct))
 }
-
 
