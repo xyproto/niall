@@ -39,9 +39,17 @@ func generatePoem(strophes int, linesPerStrophe int) {
 	// Output the header
 	fmt.Printf("\n%s\n%s\n\n", title, dashes);
 	// Generate and output all the srophes
+	var line string
 	for reps := 0; reps < strophes; reps++ {
 		for i := 0; i < linesPerStrophe; i++ {
-			fmt.Println(niall.Talk());
+			// Try to get more than just a few words, up to 5 times
+			for i2 := 0; i2 < 5; i2++ {
+				line = niall.Talk()
+				if strings.Count(line, " ") >= 3 {
+					break
+				}
+			}
+			fmt.Println(line);
 		}
 		fmt.Println()
 	}
