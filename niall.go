@@ -1,29 +1,6 @@
 package niall
 
-/*
-#include <stdio.h>
-#include <stdarg.h>
-
-// Startup/shutdown
-void Niall_Init(void);
-void Niall_Free(void);
-
-// Niall's main functions
-void Niall_Learn(char *Buffer);
-void Niall_Reply(char *Buffer,int BufSize);
-
-// Housekeeping functions
-void Niall_NewDictionary(void);
-void Niall_ListDictionary(void);
-void Niall_SaveDictionary(char *file);
-void Niall_LoadDictionary(char *file);
-void Niall_CorrectSpelling(char *Original,char *Correct);
-
-// Niall calls these functions (from C to Go)
-extern void niall_go_print( char *msg );
-extern void niall_go_warning( char *msg );
-extern void niall_go_error( char *msg );
-*/
+// #include "niall.h"
 import "C"
 
 import (
@@ -52,15 +29,6 @@ func niall_go_print(msg *C.char) {
 	PrintFunction(C.GoString(msg))
 }
 
-// Create an empty *char buffer that is C.BUFSIZ large
-// C.BUFSIZ is defined in stdio.h (was 1024 here)
-func newCStringBuffer() (*C.char, _Ctype_int) {
-	temp := make([]byte, 0, C.BUFSIZ)
-	b := bytes.NewBuffer(temp)
-	buf := C.CString(b.String())
-	return buf, _Ctype_int(cap(temp))
-}
-
 // Make Niall learn from a string
 func Learn(s string) {
 	C.Niall_Learn(C.CString(s))
@@ -68,9 +36,16 @@ func Learn(s string) {
 
 // Make Niall say something
 func Talk() string {
-	buf, size := newCStringBuffer()
-	C.Niall_Reply(buf, size)
-	return C.GoString(buf)
+	//size := 1024
+	buf := C.malloc(C.sizeof_char * 1024)
+	//buf, size := newCStringBuffer()
+	C.Niall_Reply((*C.char)(buf), 1024)
+	b := C.GoBytes(buf, 1024)
+	if bytes.Contains(b, []byte(".")) {
+		pos := bytes.Index(b, []byte("."))
+		return string(b[:pos+1])
+	}
+	return string(b)
 }
 
 // This seeds the random number generator and clears the dictionary

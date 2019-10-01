@@ -11,6 +11,6 @@ func TestHello(t *testing.T) {
 	Learn(in2)
 	Learn(in3)
 	if x := Talk(); x != out {
-		t.Errorf("Reply was %v, want %v", x, out)
+		t.Errorf("Reply was \"%v\", but I want \"%v\"", x, out)
 	}
 }

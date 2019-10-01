@@ -12,13 +12,13 @@ import (
 func learnPoem(filename string) {
 	data, err := ioutil.ReadFile(filename)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Could not read %s.\n", filename);
-		os.Exit(1);
+		fmt.Fprintf(os.Stderr, "Could not read %s.\n", filename)
+		os.Exit(1)
 	}
-	lines := strings.Split(string(data), "\n");
+	lines := strings.Split(string(data), "\n")
 	for i, line := range lines {
 		if i > 1 && i < (len(lines)-3) {
-			niall.Learn(line);
+			niall.Learn(line)
 		}
 	}
 }
@@ -37,7 +37,7 @@ func generatePoem(strophes int, linesPerStrophe int) {
 		dashes += "-"
 	}
 	// Output the header
-	fmt.Printf("\n%s\n%s\n\n", title, dashes);
+	fmt.Printf("\n%s\n%s\n\n", title, dashes)
 	// Generate and output all the srophes
 	var line string
 	for reps := 0; reps < strophes; reps++ {
@@ -49,7 +49,7 @@ func generatePoem(strophes int, linesPerStrophe int) {
 					break
 				}
 			}
-			fmt.Println(line);
+			fmt.Println(line)
 		}
 		fmt.Println()
 	}
