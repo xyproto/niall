@@ -33,8 +33,8 @@ import (
 
 var (
 	WarningFunction = fmt.Println
-	ErrorFunction = fmt.Println
-	PrintFunction = fmt.Println
+	ErrorFunction   = fmt.Println
+	PrintFunction   = fmt.Println
 )
 
 //export niall_go_warning
@@ -73,7 +73,7 @@ func Talk() string {
 	return C.GoString(buf)
 }
 
-// This seeds the random number generator and clears the dictionary 
+// This seeds the random number generator and clears the dictionary
 func Init() {
 	C.Niall_Init()
 }
@@ -107,4 +107,3 @@ func SaveDictionary(filename string) {
 func CorrectSpelling(original, correct string) {
 	C.Niall_CorrectSpelling(C.CString(original), C.CString(correct))
 }
-
