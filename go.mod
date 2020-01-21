@@ -1,3 +1,3 @@
 module github.com/xyproto/niall
 
-go 1.13
+go 1.11
